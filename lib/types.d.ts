@@ -1,11 +1,18 @@
 import { ReactNode } from "react";
-import { Animated, ScrollViewProps, StyleProp, TextStyle, ViewStyle } from "react-native";
+import {
+    Animated,
+    ScrollViewProps,
+    StyleProp,
+    TextStyle,
+    ViewStyle,
+} from "react-native";
+
 export interface CardProps<I = any> {
     key: string;
     item: I;
     daysTotal: number;
     style: {
-        position: 'absolute';
+        position: "absolute";
         zIndex: 2;
         top: number;
         left: number;
@@ -13,11 +20,13 @@ export interface CardProps<I = any> {
         width: number;
     };
 }
+
 export interface Day {
     date: Date;
     start: Date;
     end: Date;
 }
+
 export interface HeadersProps {
     columnDays: Day[];
     columnWidth: number;
@@ -28,6 +37,7 @@ export interface HeadersProps {
     headerContainerStyle?: StyleProp<ViewStyle>;
     headerTextStyle?: StyleProp<TextStyle>;
 }
+
 export interface NowLineProps {
     style?: {
         dot?: StyleProp<any>;
@@ -37,6 +47,7 @@ export interface NowLineProps {
     width: number;
     calculateTopOffset: (date: number) => number;
 }
+
 export interface HoursProps {
     offsetX?: Animated.Value;
     columnDays: Day[];
@@ -52,17 +63,21 @@ export interface HoursProps {
     timeContainerStyle?: StyleProp<ViewStyle>;
     linesStyle?: StyleProp<ViewStyle>;
     renderHour?: (hour: number) => ReactNode;
+    onClickTimeCell: any;
 }
-type Values = {
-    date: Date;
-    range?: never;
-} | {
-    range: {
-        from: Date;
-        till: Date;
-    };
-    date?: never;
-};
+
+type Values =
+    | {
+          date: Date;
+          range?: never;
+      }
+    | {
+          range: {
+              from: Date;
+              till: Date;
+          };
+          date?: never;
+      };
 export type TimetableProps<I = any> = Values & {
     items: I[];
     renderItem: (props: CardProps) => ReactNode;
@@ -97,6 +112,7 @@ export type TimetableProps<I = any> = Values & {
     fromHour?: HoursProps["fromHour"];
     toHour?: HoursProps["toHour"];
     is12Hour?: HoursProps["is12Hour"];
+    onClickTimeCell?: HoursProps["onClickTimeCell"];
 };
 export {};
 //# sourceMappingURL=types.d.ts.map
